@@ -1,3 +1,5 @@
+import time
+
 import telebot
 from telebot import types
 
@@ -34,4 +36,9 @@ def callback_inline(call):
         bot.send_message(call.message.chat.id, f"Вы нажали на кнопку с данными: {call.data}")
 
 # Запуск бота
-bot.polling(none_stop=True)
+while True:
+    try:
+        bot.polling(none_stop=True)
+    except Exception as e:
+        print(f"Произошла ошибка: {e}")
+        time.sleep(5)  # Ожидание перед перезапуском
